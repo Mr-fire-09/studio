@@ -130,8 +130,10 @@ class _SignupPageState extends State<SignupPage> {
 
   void _submitForm() {
     if (_formKey.currentState!.validate()) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Signup Successful!')),
+      // Navigate to the CoursesPage after successful signup
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => const CoursesPage()),
       );
     }
   }
@@ -243,6 +245,137 @@ class _SignupPageState extends State<SignupPage> {
                 ),
               ],
             ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class CoursesPage extends StatelessWidget {
+  const CoursesPage({super.key});
+
+  final List<Map<String, String>> courses = const [
+    {
+      'title': 'App Development',
+      'description': 'Learn to build cross-platform mobile apps using Flutter.',
+    },
+    {
+      'title': 'Web Development',
+      'description':
+          'Master frontend and backend web development technologies.',
+    },
+    {
+      'title': 'Backend Development',
+      'description':
+          'Learn server-side programming with Node.js, Django, and more.',
+    },
+    {
+      'title': 'DevOps',
+      'description':
+          'Understand CI/CD, Docker, Kubernetes, and cloud infrastructure.',
+    },
+    {
+      'title': 'Power BI',
+      'description':
+          'Become proficient in data visualization and business intelligence.',
+    },
+    {
+      'title': 'AI/ML',
+      'description':
+          'Explore artificial intelligence and machine learning concepts.',
+    },
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Choose Your Course'),
+        backgroundColor: Colors.deepPurple,
+      ),
+      body: Container(
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            colors: [Colors.purple, Colors.deepPurple],
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+          ),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: GridView.builder(
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2,
+              crossAxisSpacing: 16,
+              mainAxisSpacing: 16,
+              childAspectRatio: 0.8,
+            ),
+            itemCount: courses.length,
+            itemBuilder: (context, index) {
+              final course = courses[index];
+              return CourseCard(
+                title: course['title']!,
+                description: course['description']!,
+              );
+            },
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class CourseCard extends StatelessWidget {
+  final String title;
+  final String description;
+
+  const CourseCard({
+    super.key,
+    required this.title,
+    required this.description,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      elevation: 10,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(15),
+      ),
+      child: Container(
+        decoration: BoxDecoration(
+          gradient: const LinearGradient(
+            colors: [Colors.purple, Colors.deepPurple],
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+          ),
+          borderRadius: BorderRadius.circular(15),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                title,
+                style: const TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                ),
+                textAlign: TextAlign.center,
+              ),
+              const SizedBox(height: 10),
+              Text(
+                description,
+                style: const TextStyle(
+                  fontSize: 14,
+                  color: Colors.white70,
+                ),
+                textAlign: TextAlign.center,
+              ),
+            ],
           ),
         ),
       ),
