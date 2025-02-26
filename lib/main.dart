@@ -10,7 +10,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'learning Studio ',
+      title: 'Learning Studio',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
@@ -90,7 +90,6 @@ class _WelcomePageState extends State<WelcomePage>
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(30),
                     ),
-                    shadowColor: Colors.black,
                     elevation: 10,
                   ),
                   child: const Text(
@@ -114,7 +113,6 @@ class _WelcomePageState extends State<WelcomePage>
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(30),
                     ),
-                    shadowColor: Colors.black,
                     elevation: 10,
                   ),
                   child: const Text(
@@ -154,7 +152,6 @@ class _SignupPageState extends State<SignupPage> {
 
   void _submitForm() {
     if (_formKey.currentState!.validate()) {
-      // Navigate to the CoursesPage after successful signup
       Navigator.push(
         context,
         MaterialPageRoute(builder: (context) => const CoursesPage()),
@@ -259,7 +256,6 @@ class _SignupPageState extends State<SignupPage> {
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(30),
                     ),
-                    shadowColor: Colors.black,
                     elevation: 10,
                   ),
                   child: const Text(
@@ -297,7 +293,6 @@ class _LoginPageState extends State<LoginPage> {
 
   void _submitForm() {
     if (_formKey.currentState!.validate()) {
-      // Navigate to the CoursesPage after successful login
       Navigator.push(
         context,
         MaterialPageRoute(builder: (context) => const CoursesPage()),
@@ -381,7 +376,6 @@ class _LoginPageState extends State<LoginPage> {
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(30),
                     ),
-                    shadowColor: Colors.black,
                     elevation: 10,
                   ),
                   child: const Text(
